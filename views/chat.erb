@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <mata charset="utf-8">
+  <title><%= @title %></title>
+</head>
+<body>
+  <form action="chat" method="POST">
+    <div>
+      Name: <input type="text" name="name" value="">
+    </div>
+    <div>
+      Message: <input type="text" name="message" value="">
+    </div>
+    <div>
+      <input type="submit" value="Send Message">
+    </div>
+  </form>
+  <div>
+    <% @messages.each do |message| %>
+    <p><%= message %></p>
+    <% end %>
+  </div>
+</body>
+</html>
