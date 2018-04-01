@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <mata charset="utf-8">
+  <title><%= @title %></title>
+  <style>
+    .saturday {
+      color: blue;
+    }
+    .sunday {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <% if @week.nil? %>
+    <h1>カレンダー</h1>
+  <% else %>
+    <h1><%= @year %>年<%= @month %>月のカレンダー</h1>
+  <% end %>
+
+  <form action="calender" method="POST">
+    <div>
+      Year: <input type="text" name="year" value="">
+    </div>
+    <div>
+      Month: <input type="text" name="month" value="">
+    </div>
+    <div>
+      <input type="submit" value="Show calender">
+    </div>
+  </form>
+
+  <% if @week.nil? %>
+    <p>年月を入力してください。</p>
+  <% else %>
+    <% @week.each do |date| %>
+      <% if date['wday'] == 6 %>
+        <p class="saturday">
+          <%= date['day'] %>
+        </p>
+      <% elsif date['wday'] == 0 %>
+        <p class="sunday">
+          <%= date['day'] %>
+        </p>
+      <% else %>
+        <p>
+          <%= date['day'] %>
+        </p>
+      <% end %>
+    <% end %>
+  <% end %>
+</body>
+</html>
