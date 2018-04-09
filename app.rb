@@ -5,6 +5,7 @@ require './modules/fizzbuzz'
 require './modules/chat'
 require './modules/calender'
 require './modules/fortune'
+require './modules/users'
 
 require 'date'
 
@@ -53,5 +54,12 @@ class App < Sinatra::Base
     fortune = Fortune.new()
     @result = fortune.result
     erb :fortune
+  end
+
+  # Users
+  get '/users' do
+    user = User.new
+    p user.all
+    erb :users
   end
 end
