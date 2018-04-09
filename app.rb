@@ -4,6 +4,7 @@ require 'sinatra/reloader'
 require './modules/fizzbuzz'
 require './modules/chat'
 require './modules/calender'
+require './modules/fortune'
 
 require 'date'
 
@@ -15,14 +16,12 @@ class App < Sinatra::Base
   # FizzBuzz
   get '/fizzbuzz' do
     @results = FizzBuzz.results
-    @title = 'Fizzbuzz'
     erb :fizzbuzz
   end
 
   # Chat
   get '/chat' do
     @messages = Chat.messages
-    @title = 'Chat'
     erb :chat
   end
 
@@ -47,5 +46,12 @@ class App < Sinatra::Base
     @month = month
     @week = calender.week()
     erb :calender
+  end
+
+  # Fortune
+  get '/fortune' do
+    fortune = Fortune.new()
+    @result = fortune.result
+    erb :fortune
   end
 end
